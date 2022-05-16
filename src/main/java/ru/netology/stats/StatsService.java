@@ -13,12 +13,7 @@ public class StatsService {
 
     //Средняя сумма продаж в месяц
     public long averageSum(long[] sales) {
-        long sum = 0;
-        double averageSum = 0;
-        for (long sale : sales) {
-            sum += sale; // sum = sum + sale
-        }
-        averageSum = sum / 12.0;
+        double averageSum = sum (sales) / 12.0;
         return (long) Math.round(averageSum);
     }
 
@@ -27,8 +22,6 @@ public class StatsService {
         int maxMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
         for (long sale : sales) {
-            // sales[minMonth] - продажи в месяце minMonth
-            // sale - продажи в рассматриваемом месяце
             if (sale >= sales[maxMonth]) {
                 maxMonth = month;
             }
@@ -42,8 +35,6 @@ public class StatsService {
         int minMonth = 0;
         int month = 0; // переменная для индекса рассматриваемого месяца в массиве
         for (long sale : sales) {
-            // sales[minMonth] - продажи в месяце minMonth
-            // sale - продажи в рассматриваемом месяце
             if (sale <= sales[minMonth]) {
                 minMonth = month;
             }
@@ -54,16 +45,9 @@ public class StatsService {
 
     //Кол-во месяцев, в которых продажи были ниже среднего
     public int belowAverageSum(long[] sales) {
-        long sum = 0;
-        double averageSum = 0;
-        for (long sale : sales) {
-            sum += sale; // sum = sum + sale
-        }
-        averageSum = sum / 12.0;
-        averageSum = (long) Math.round(averageSum);
         int belowAverageSum = 0;
         for (long sale : sales) {
-            if (sale < averageSum) {
+            if (sale < averageSum(sales)) {
                 belowAverageSum = belowAverageSum + 1;
             }
         }
@@ -72,17 +56,9 @@ public class StatsService {
 
     //Кол-во месяцев, в которых продажи были выше среднего
     public int aboveAverageSum(long[] sales) {
-        long sum = 0;
-        double averageSum = 0;
-        for (long sale : sales) {
-            sum += sale; // sum = sum + sale
-        }
-        averageSum = sum / 12.0;
-        averageSum = (long) Math.round(averageSum);
-
         int aboveAverageSum = 0;
         for (long sale : sales) {
-            if (sale > averageSum) {
+            if (sale > averageSum(sales)) {
                 aboveAverageSum = aboveAverageSum + 1;
             }
         }
